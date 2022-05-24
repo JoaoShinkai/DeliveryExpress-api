@@ -1,6 +1,6 @@
-import express from "express";
-import "../typeorm";
-import { routes } from "./routes";
+import express from 'express';
+import '../typeorm';
+import { routes } from './routes';
 
 const app = express();
 

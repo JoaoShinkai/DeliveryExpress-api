@@ -1,9 +1,16 @@
-import { ICategoryDTO } from "@modules/category/dtos/ICategoryDTO";
-import { Store } from "@modules/store/infra/typeorm/entities/Store";
-import { DefaultEntity } from "@shared/infra/typeorm/entities/DefaultEntity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ICategoryDTO } from '@modules/category/dtos/ICategoryDTO';
+import { Product } from '@modules/product/infra/typeorm/entities/Product';
+import { Store } from '@modules/store/infra/typeorm/entities/Store';
+import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 
-@Entity("category")
+@Entity('category')
 export class Category extends DefaultEntity implements ICategoryDTO {
   @PrimaryGeneratedColumn()
   id: number;
@@ -19,4 +26,7 @@ export class Category extends DefaultEntity implements ICategoryDTO {
 
   @ManyToOne(() => Store, () => Category)
   store: Store;
+
+  @OneToMany(() => Product, () => Category)
+  products: Product[];
 }

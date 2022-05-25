@@ -1,8 +1,8 @@
-import { IUserDTO } from "@modules/user/dtos/IUserDTO";
-import { DefaultEntity } from "@shared/infra/typeorm/entities/DefaultEntity";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { IUserDTO } from '@modules/user/dtos/IUserDTO';
+import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("user")
+@Entity('user')
 export class User extends DefaultEntity implements IUserDTO {
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,7 +10,7 @@ export class User extends DefaultEntity implements IUserDTO {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -19,6 +19,6 @@ export class User extends DefaultEntity implements IUserDTO {
   @Column()
   phone: string;
 
-  @Column({ name: "birth_date" })
+  @Column({ name: 'birth_date' })
   birthDate: Date;
 }

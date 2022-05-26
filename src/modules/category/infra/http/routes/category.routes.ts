@@ -14,6 +14,7 @@ categoryRoutes.post(
 );
 
 categoryRoutes.get('/', categoryController.list);
+categoryRoutes.get('/store/:id', categoryController.listByStore);
 
 categoryRoutes.put(
   '/:id',

@@ -19,6 +19,11 @@ export class createAdditionalTable1653592745269 implements MigrationInterface {
             isNullable: false
           },
           {
+            name: 'multiple',
+            type: 'int',
+            isNullable: false
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()'

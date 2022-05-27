@@ -1,31 +1,32 @@
-// export class AdditionalRepository implements IAdditionalRepository {
-//   private repository: Repository<Category>;
+import { IAdditionalDTO } from '@modules/additional/dtos/IAdditionalDTO';
+import { IAdditionalRepository } from '@modules/additional/repositories/IAdditionalRepository';
+import { getRepository, Repository } from 'typeorm';
+import { Additional } from '../entities/Additional';
 
-//   constructor() {
-//     this.repository = getRepository(Category);
-//   }
+export class AdditionalRepository implements IAdditionalRepository {
+  private repository: Repository<Additional>;
 
-//   async create(category: ICategoryDTO): Promise<void> {
-//     await this.repository.save(category);
-//   }
+  constructor() {
+    this.repository = getRepository(Additional);
+  }
 
-//   async find(): Promise<ICategoryDTO[]> {
-//     return this.repository.find();
-//   }
+  async create(additional: IAdditionalDTO): Promise<void> {
+    await this.repository.save(additional);
+  }
 
-//   async findById(id: number): Promise<ICategoryDTO | undefined> {
-//     return this.repository.findOne(id);
-//   }
+  async find(): Promise<IAdditionalDTO[]> {
+    return this.repository.find();
+  }
 
-//   async findByStore(storeId: number): Promise<ICategoryDTO[]> {
-//     return this.repository.find({ storeId });
-//   }
+  async findByProduct(productId: number): Promise<IAdditionalDTO[]> {
+    return this.repository.find({ productId });
+  }
 
-//   async update(id: number, data: Partial<ICategoryDTO>): Promise<void> {
-//     await this.repository.update(id, data);
-//   }
+  async update(id: number, data: Partial<IAdditionalDTO>): Promise<void> {
+    await this.repository.update(id, data);
+  }
 
-//   async delete(id: number): Promise<void> {
-//     await this.repository.delete(id);
-//   }
-// }
+  async delete(id: number): Promise<void> {
+    await this.repository.delete(id);
+  }
+}

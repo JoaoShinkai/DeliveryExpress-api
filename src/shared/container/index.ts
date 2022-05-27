@@ -1,3 +1,5 @@
+import { AdditionalRepository } from '@modules/additional/infra/typeorm/repositories/AdditionalRepository';
+import { IAdditionalRepository } from '@modules/additional/repositories/IAdditionalRepository';
 import { CategoryRepository } from '@modules/category/infra/typeorm/repositories/CategoryRepository';
 import { ICategoryRepository } from '@modules/category/repositories/ICategoryRepository';
 import { ProductRepository } from '@modules/product/infra/typeorm/repositories/ProductRepository';
@@ -20,4 +22,8 @@ container.registerSingleton<ICategoryRepository>(
 container.registerSingleton<IProductRepository>(
   'ProductRepository',
   ProductRepository
+);
+container.registerSingleton<IAdditionalRepository>(
+  'AdditionalRepository',
+  AdditionalRepository
 );

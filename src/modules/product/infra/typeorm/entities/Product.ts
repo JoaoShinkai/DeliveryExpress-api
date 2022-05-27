@@ -1,7 +1,14 @@
+import { Additional } from '@modules/additional/infra/typeorm/entities/Additional';
 import { Category } from '@modules/category/infra/typeorm/entities/Category';
 import { IProductDTO } from '@modules/product/dtos/IProductDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 
 @Entity()
 export class Product extends DefaultEntity implements IProductDTO {
@@ -25,4 +32,7 @@ export class Product extends DefaultEntity implements IProductDTO {
 
   @ManyToOne(() => Category, () => Product)
   category: Category;
+
+  @OneToMany(() => Additional, () => Product, { onDelete: 'CASCADE' })
+  additionals: Additional[];
 }

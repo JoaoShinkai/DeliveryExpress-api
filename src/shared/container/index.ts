@@ -2,6 +2,8 @@ import { AdditionalRepository } from '@modules/additional/infra/typeorm/reposito
 import { IAdditionalRepository } from '@modules/additional/repositories/IAdditionalRepository';
 import { CategoryRepository } from '@modules/category/infra/typeorm/repositories/CategoryRepository';
 import { ICategoryRepository } from '@modules/category/repositories/ICategoryRepository';
+import { OptionAdditionalRepository } from '@modules/optionAdditional/infra/typeorm/repositories/OptionAdditionalRepository';
+import { IOptionAdditionalRepository } from '@modules/optionAdditional/repositories/IOptionAdditionalRepository';
 import { ProductRepository } from '@modules/product/infra/typeorm/repositories/ProductRepository';
 import { IProductRepository } from '@modules/product/repositories/IProductRepository';
 import { StoreRepository } from '@modules/store/infra/typeorm/repositories/StoreRepository';
@@ -26,4 +28,8 @@ container.registerSingleton<IProductRepository>(
 container.registerSingleton<IAdditionalRepository>(
   'AdditionalRepository',
   AdditionalRepository
+);
+container.registerSingleton<IOptionAdditionalRepository>(
+  'OptionAdditionalRepository',
+  OptionAdditionalRepository
 );

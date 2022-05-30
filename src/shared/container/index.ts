@@ -1,5 +1,7 @@
 import { AdditionalRepository } from '@modules/additional/infra/typeorm/repositories/AdditionalRepository';
 import { IAdditionalRepository } from '@modules/additional/repositories/IAdditionalRepository';
+import { AddressRepository } from '@modules/address/infra/typeorm/repositories/AddressRepository';
+import { IAddressRepository } from '@modules/address/repositories/IAddressRepository';
 import { CategoryRepository } from '@modules/category/infra/typeorm/repositories/CategoryRepository';
 import { ICategoryRepository } from '@modules/category/repositories/ICategoryRepository';
 import { OptionAdditionalRepository } from '@modules/optionAdditional/infra/typeorm/repositories/OptionAdditionalRepository';
@@ -32,4 +34,8 @@ container.registerSingleton<IAdditionalRepository>(
 container.registerSingleton<IOptionAdditionalRepository>(
   'OptionAdditionalRepository',
   OptionAdditionalRepository
+);
+container.registerSingleton<IAddressRepository>(
+  'AddressRepository',
+  AddressRepository
 );

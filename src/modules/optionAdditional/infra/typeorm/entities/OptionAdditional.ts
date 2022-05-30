@@ -1,5 +1,5 @@
 import { Additional } from '@modules/additional/infra/typeorm/entities/Additional';
-import { IOptionAdditionalDTO } from '@modules/optionAdditional/dtos/IOptionalAdditionalDTO';
+import { IOptionAdditionalDTO } from '@modules/optionAdditional/dtos/IOptionAdditionalDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 

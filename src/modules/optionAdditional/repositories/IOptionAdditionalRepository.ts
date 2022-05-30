@@ -1,4 +1,4 @@
-import { IOptionAdditionalDTO } from '../dtos/IOptionalAdditionalDTO';
+import { IOptionAdditionalDTO } from '../dtos/IOptionAdditionalDTO';
 
 export interface IOptionAdditionalRepository {
   create(optionAdditional: IOptionAdditionalDTO): Promise<void>;

@@ -1,4 +1,4 @@
-import { IOptionAdditionalDTO } from '@modules/optionAdditional/dtos/IOptionalAdditionalDTO';
+import { IOptionAdditionalDTO } from '@modules/optionAdditional/dtos/IOptionAdditionalDTO';
 import { IOptionAdditionalRepository } from '@modules/optionAdditional/repositories/IOptionAdditionalRepository';
 import { getRepository, Repository } from 'typeorm';
 import { OptionAdditional } from '../entities/OptionAdditional';

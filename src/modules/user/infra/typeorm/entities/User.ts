@@ -1,6 +1,7 @@
+import { Address } from '@modules/address/infra/typeorm/entities/Address';
 import { IUserDTO } from '@modules/user/dtos/IUserDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('user')
 export class User extends DefaultEntity implements IUserDTO {
@@ -21,4 +22,7 @@ export class User extends DefaultEntity implements IUserDTO {
 
   @Column({ name: 'birth_date' })
   birthDate: Date;
+
+  @OneToMany(() => Address, () => User)
+  address: Address;
 }

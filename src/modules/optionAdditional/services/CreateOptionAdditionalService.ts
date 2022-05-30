@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { IOptionAdditionalDTO } from '../dtos/IOptionalAdditionalDTO';
+import { IOptionAdditionalDTO } from '../dtos/IOptionAdditionalDTO';
 import { IOptionAdditionalRepository } from '../repositories/IOptionAdditionalRepository';
 
 @injectable()

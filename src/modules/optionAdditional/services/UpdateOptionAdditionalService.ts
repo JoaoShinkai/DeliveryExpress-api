@@ -3,13 +3,16 @@ import { IOptionAdditionalDTO } from '../dtos/IOptionAdditionalDTO';
 import { IOptionAdditionalRepository } from '../repositories/IOptionAdditionalRepository';
 
 @injectable()
-export class ListOptionAdditionalService {
+export class UpdateOptionAdditionalService {
   constructor(
     @inject('OptionAdditionalRepository')
     private optionAdditionalRepository: IOptionAdditionalRepository
   ) {}
 
-  public async execute(): Promise<IOptionAdditionalDTO[]> {
-    return this.optionAdditionalRepository.find();
+  public async execute(
+    id: number,
+    data: Partial<IOptionAdditionalDTO>
+  ): Promise<void> {
+    await this.optionAdditionalRepository.update(id, data);
   }
 }

@@ -1,4 +1,5 @@
-import createOptionAdditionalSchema from '@modules/optionAdditional/schemas/optionAdditional.schema';
+import createOptionAdditionalSchema from '@modules/optionAdditional/schemas/createOptionAdditional.schema';
+import updateOptionAdditionalSchema from '@modules/optionAdditional/schemas/updateOptionAdditional.schema';
 import { celebrate, Segments } from 'celebrate';
 import { Router } from 'express';
 import { OptionAdditionalController } from '../controller/OptionAdditionalController';
@@ -13,5 +14,11 @@ optionAdditionalRoutes.post(
 );
 
 optionAdditionalRoutes.get('/', optionAdditionalController.list);
+
+optionAdditionalRoutes.put(
+  '/:id',
+  [celebrate({ [Segments.BODY]: updateOptionAdditionalSchema })],
+  optionAdditionalController.update
+);
 
 export { optionAdditionalRoutes };

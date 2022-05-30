@@ -1,4 +1,5 @@
 import { additionalRoutes } from '@modules/additional/infra/http/routes/additional.routes';
+import { addressRoutes } from '@modules/address/infra/http/routes/address.routes';
 import { categoryRoutes } from '@modules/category/infra/http/routes/category.routes';
 import { optionAdditionalRoutes } from '@modules/optionAdditional/infra/http/routes/optionAdditional.routes';
 import { productRoutes } from '@modules/product/infra/http/routes/product.routes';
@@ -14,5 +15,6 @@ routes.use('/category', categoryRoutes);
 routes.use('/product', productRoutes);
 routes.use('/additional', additionalRoutes);
 routes.use('/optionAdditional', optionAdditionalRoutes);
+routes.use('/address', addressRoutes);
 
 export { routes };

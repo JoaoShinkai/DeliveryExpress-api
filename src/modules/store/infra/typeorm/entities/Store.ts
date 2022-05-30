@@ -1,6 +1,7 @@
+import { Order } from '@modules/order/infra/typeorm/entities/Order';
 import { IStoreDTO } from '@modules/store/dtos/IStoreDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('store')
 export class Store extends DefaultEntity implements IStoreDTO {
@@ -21,4 +22,7 @@ export class Store extends DefaultEntity implements IStoreDTO {
 
   @Column()
   status: number;
+
+  @OneToMany(() => Order, () => Store)
+  orders: Order[];
 }

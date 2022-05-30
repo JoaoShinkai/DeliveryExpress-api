@@ -6,6 +6,8 @@ import { CategoryRepository } from '@modules/category/infra/typeorm/repositories
 import { ICategoryRepository } from '@modules/category/repositories/ICategoryRepository';
 import { OptionAdditionalRepository } from '@modules/optionAdditional/infra/typeorm/repositories/OptionAdditionalRepository';
 import { IOptionAdditionalRepository } from '@modules/optionAdditional/repositories/IOptionAdditionalRepository';
+import { OrderRepository } from '@modules/order/infra/typeorm/repositories/OrderRepository';
+import { IOrderRepository } from '@modules/order/repositories/IOrderRepository';
 import { ProductRepository } from '@modules/product/infra/typeorm/repositories/ProductRepository';
 import { IProductRepository } from '@modules/product/repositories/IProductRepository';
 import { StoreRepository } from '@modules/store/infra/typeorm/repositories/StoreRepository';
@@ -38,4 +40,8 @@ container.registerSingleton<IOptionAdditionalRepository>(
 container.registerSingleton<IAddressRepository>(
   'AddressRepository',
   AddressRepository
+);
+container.registerSingleton<IOrderRepository>(
+  'OrderRepository',
+  OrderRepository
 );

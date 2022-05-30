@@ -1,4 +1,5 @@
 import { Address } from '@modules/address/infra/typeorm/entities/Address';
+import { Order } from '@modules/order/infra/typeorm/entities/Order';
 import { IUserDTO } from '@modules/user/dtos/IUserDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -24,5 +25,8 @@ export class User extends DefaultEntity implements IUserDTO {
   birthDate: Date;
 
   @OneToMany(() => Address, () => User)
-  address: Address;
+  addresses: Address[];
+
+  @OneToMany(() => Order, () => User)
+  orders: Order[];
 }

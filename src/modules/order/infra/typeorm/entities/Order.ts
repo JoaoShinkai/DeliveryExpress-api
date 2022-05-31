@@ -2,7 +2,14 @@ import { IOrderDTO } from '@modules/order/dtos/IOrderDTO';
 import { Store } from '@modules/store/infra/typeorm/entities/Store';
 import { User } from '@modules/user/infra/typeorm/entities/User';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
+import { OrderProduct } from './OrderProduct';
 
 @Entity('order')
 export class Order extends DefaultEntity implements IOrderDTO {
@@ -77,4 +84,7 @@ export class Order extends DefaultEntity implements IOrderDTO {
 
   @ManyToOne(() => User, () => Order)
   user: User;
+
+  @OneToMany(() => OrderProduct, () => Order)
+  products: OrderProduct[];
 }

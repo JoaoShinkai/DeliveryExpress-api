@@ -19,7 +19,9 @@ export class OrderRepository implements IOrderRepository {
   }
 
   async findById(id: number): Promise<IOrderDTO | undefined> {
-    return this.repository.findOne(id, { relations: ['user', 'store'] });
+    return this.repository.findOne(id, {
+      relations: ['user', 'store', 'products']
+    });
   }
 
   async findByUser(userId: number): Promise<IOrderDTO[]> {
@@ -28,6 +30,14 @@ export class OrderRepository implements IOrderRepository {
 
   async update(id: number, data: Partial<IOrderDTO>): Promise<void> {
     await this.repository.update(id, data);
+  }
+
+  async updateProductsInOrder(
+    id: number,
+    data: Partial<IOrderDTO>
+  ): Promise<void> {
+    console.log(data);
+    await this.repository.save({ ...data, id });
   }
 
   async delete(id: number): Promise<void> {

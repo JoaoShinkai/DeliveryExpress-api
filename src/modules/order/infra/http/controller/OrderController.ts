@@ -3,6 +3,7 @@ import { ListByIdOrderService } from '@modules/order/services/ListByIdOrderServi
 import { ListByUserOrderService } from '@modules/order/services/ListByUserOrderService';
 import { ListOrderService } from '@modules/order/services/ListOrderService';
 import { UpdateOrderService } from '@modules/order/services/UpdateOrderService';
+import { UpdateProductsInOrderService } from '@modules/order/services/UpdateProductsInOrderService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -59,6 +60,21 @@ export class OrderController {
       const updateOrderService = container.resolve(UpdateOrderService);
 
       res.json(await updateOrderService.execute(Number(id), data));
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  }
+
+  async updateProductsInOrder(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+
+      const updateProductsInOrderService = container.resolve(
+        UpdateProductsInOrderService
+      );
+
+      res.json(await updateProductsInOrderService.execute(Number(id), data));
     } catch (err: any) {
       res.status(500).json({ message: err.message });
     }

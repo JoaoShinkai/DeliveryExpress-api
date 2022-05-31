@@ -1,3 +1,6 @@
+import { IStoreDTO } from '@modules/store/dtos/IStoreDTO';
+import { IUserDTO } from '@modules/user/dtos/IUserDTO';
+
 export interface IOrderDTO {
   userId: number;
   storeId: number;
@@ -18,4 +21,6 @@ export interface IOrderDTO {
   number: string;
   complement: string;
   reference: string;
+  user?: IUserDTO;
+  store?: IStoreDTO;
 }

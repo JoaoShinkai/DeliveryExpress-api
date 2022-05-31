@@ -18,6 +18,14 @@ export class OrderRepository implements IOrderRepository {
     return this.repository.find();
   }
 
+  async findById(id: number): Promise<IOrderDTO | undefined> {
+    return this.repository.findOne(id, { relations: ['user', 'store'] });
+  }
+
+  async findByUser(userId: number): Promise<IOrderDTO[]> {
+    return this.repository.find({ userId });
+  }
+
   async update(id: number, data: Partial<IOrderDTO>): Promise<void> {
     await this.repository.update(id, data);
   }

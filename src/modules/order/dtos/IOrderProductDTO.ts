@@ -5,6 +5,8 @@ import { IOrderDTO } from './IOrderDTO';
 export interface IOrderProductDTO extends IDefaultDTO {
   product: IProductDTO;
   order: IOrderDTO;
+  productId?: number;
+  orderId?: number;
   quantity: number;
   unityPrice: number;
   amount: number;

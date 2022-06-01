@@ -3,7 +3,7 @@ import Joi from 'joi';
 const updateProductsInOrderSchema = Joi.object({
   products: Joi.array().items(
     Joi.object({
-      productId: Joi.number().positive(),
+      id: Joi.number().positive().required(),
       quantity: Joi.number().required(),
       unityPrice: Joi.number().required(),
       amount: Joi.number().required(),

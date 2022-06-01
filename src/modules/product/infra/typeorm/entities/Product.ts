@@ -1,6 +1,5 @@
 import { Additional } from '@modules/additional/infra/typeorm/entities/Additional';
 import { Category } from '@modules/category/infra/typeorm/entities/Category';
-import { OrderProduct } from '@modules/order/infra/typeorm/entities/OrderProduct';
 import { IProductDTO } from '@modules/product/dtos/IProductDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import {
@@ -37,6 +36,6 @@ export class Product extends DefaultEntity implements IProductDTO {
   @OneToMany(() => Additional, () => Product, { onDelete: 'CASCADE' })
   additionals: Additional[];
 
-  @OneToMany(() => OrderProduct, () => Product)
-  orderProducts: OrderProduct[];
+  // @OneToMany(() => OrderProduct, () => Product)
+  // orderProducts: OrderProduct[];
 }

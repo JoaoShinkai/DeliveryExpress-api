@@ -11,7 +11,9 @@ export class OrderRepository implements IOrderRepository {
   }
 
   async create(data: IOrderDTO): Promise<void> {
-    await this.repository.save(data);
+    const createdOrder = this.repository.create(data);
+    console.log(createdOrder);
+    await this.repository.save(createdOrder);
   }
 
   async find(): Promise<IOrderDTO[]> {
@@ -37,7 +39,7 @@ export class OrderRepository implements IOrderRepository {
     data: Partial<IOrderDTO>
   ): Promise<void> {
     console.log(data);
-    await this.repository.save({ ...data, id });
+    await this.repository.save({ ...data, id: Number(id) });
   }
 
   async delete(id: number): Promise<void> {

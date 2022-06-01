@@ -5,6 +5,7 @@ import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn
@@ -85,6 +86,7 @@ export class Order extends DefaultEntity implements IOrderDTO {
   @ManyToOne(() => User, () => Order)
   user: User;
 
-  @OneToMany(() => OrderProduct, () => Order)
+  @OneToMany(() => OrderProduct, product => product.order, { cascade: true })
+  @JoinColumn()
   products: OrderProduct[];
 }

@@ -15,12 +15,12 @@ export class OrderProduct extends DefaultEntity implements IOrderProductDTO {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Product, () => OrderProduct)
-  @JoinColumn({ name: 'productId', referencedColumnName: 'id' })
+  @ManyToOne(() => Product)
+  @JoinColumn()
   product: Product;
 
-  @ManyToOne(() => Order, () => OrderProduct)
-  @JoinColumn({ name: 'orderId', referencedColumnName: 'id' })
+  @ManyToOne(() => Order)
+  @JoinColumn()
   order: Order;
 
   @Column()

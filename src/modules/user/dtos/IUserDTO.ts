@@ -9,5 +9,5 @@ export interface IUserDTO extends IDefaultDTO {
 
   phone: string;
 
-  password?: string;
+  password: string;
 }

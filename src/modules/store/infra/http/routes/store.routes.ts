@@ -1,5 +1,6 @@
 import createStoreSchema from '@modules/store/schemas/createStore.schema';
 import updateStoreSchema from '@modules/store/schemas/updateStore.schema';
+import userAuth from '@shared/infra/http/middlewares/userAuth';
 import { celebrate, Segments } from 'celebrate';
 import Router from 'express';
 import { StoreController } from '../controller/StoreController';
@@ -14,7 +15,7 @@ storeRoutes.post(
   storeController.create
 );
 
-storeRoutes.get('/', storeController.list);
+storeRoutes.get('/', userAuth, storeController.list);
 storeRoutes.put(
   '/:id',
   [celebrate({ [Segments.BODY]: updateStoreSchema })],

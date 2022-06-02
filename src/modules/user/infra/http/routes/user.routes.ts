@@ -14,6 +14,7 @@ userRoutes.post(
   [celebrate({ [Segments.BODY]: createUserSchema })],
   userController.create
 );
+userRoutes.post('/login', userController.login);
 
 userRoutes.get('/', userController.list);
 userRoutes.get('/:id', userController.listById);

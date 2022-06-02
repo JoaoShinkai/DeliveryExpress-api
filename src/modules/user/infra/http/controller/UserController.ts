@@ -1,6 +1,7 @@
 import { CreateUserService } from '@modules/user/services/CreateUserService';
 import { ListByIdUserService } from '@modules/user/services/ListByIdUserService';
 import { ListUserService } from '@modules/user/services/ListUserService';
+import { LoginUserService } from '@modules/user/services/LoginUserService';
 import { UpdateCartProductsService } from '@modules/user/services/UpdateCartProductsService';
 import { UpdateUserService } from '@modules/user/services/UpdateUserService';
 import { Request, Response } from 'express';
@@ -62,6 +63,18 @@ export class UserController {
       res.json(await updateCartProductService.execute(Number(id), data));
     } catch (err: any) {
       res.status(500).json({ message: err.message });
+    }
+  }
+
+  async login(req: Request, res: Response): Promise<void> {
+    try {
+      const { email, password } = req.body;
+
+      const loginUserService = container.resolve(LoginUserService);
+
+      res.json(await loginUserService.execute(email, password));
+    } catch (err: any) {
+      res.status(401).json({ message: err.message });
     }
   }
 }

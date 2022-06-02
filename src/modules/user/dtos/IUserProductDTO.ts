@@ -3,9 +3,10 @@ import { IDefaultDTO } from '@shared/dtos/IDefaultDTO';
 
 export interface IUserProductDTO extends IDefaultDTO {
   quantity: number;
-  unity_price: number;
+  unityPrice: number;
   amount: number;
   discount: number;
   observation: string;
-  products: IProductDTO[];
+  product: IProductDTO;
+  userId: number;
 }

@@ -4,13 +4,17 @@ import bcryptjs from 'bcryptjs';
 import { injectable } from 'tsyringe';
 import { getRepository, Repository } from 'typeorm';
 import { User } from '../entities/User';
+import { UserProduct } from '../entities/UserProduct';
 
 @injectable()
 export class UserRepository implements IUserRepository {
   private repository: Repository<User>;
 
+  private repositoryUserProduct: Repository<UserProduct>;
+
   constructor() {
     this.repository = getRepository(User);
+    this.repositoryUserProduct = getRepository(UserProduct);
   }
 
   async create(data: IUserDTO): Promise<void> {
@@ -22,7 +26,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async findById(id: number): Promise<IUserDTO | undefined> {
-    return this.repository.findOne(id);
+    return this.repository.findOne(id, { relations: ['cart'] });
   }
 
   async findByEmail(email: string): Promise<IUserDTO | undefined> {
@@ -33,8 +37,16 @@ export class UserRepository implements IUserRepository {
     await this.repository.update(id, data);
   }
 
+  async updateUserProducts(id: number, data: Partial<IUserDTO>): Promise<void> {
+    await this.repository.save({ ...data, id });
+  }
+
   async delete(id: number): Promise<void> {
     await this.repository.delete(id);
+  }
+
+  async deleteCartProducts(userId: number): Promise<void> {
+    await this.repositoryUserProduct.delete({ userId });
   }
 
   async hashPassword(password: string): Promise<string> {

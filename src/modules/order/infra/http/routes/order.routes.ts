@@ -1,6 +1,5 @@
 import createOrderSchema from '@modules/order/schemas/createOrder.schema';
 import updateOrderSchema from '@modules/order/schemas/updateOrder.schema';
-import updateProductsInOrderSchema from '@modules/order/schemas/updateProductsInOrder.schema';
 import { celebrate, Segments } from 'celebrate';
 import { Router } from 'express';
 import { OrderController } from '../controller/OrderController';
@@ -21,11 +20,6 @@ orderRoutes.put(
   '/:id',
   [celebrate({ [Segments.BODY]: updateOrderSchema })],
   orderController.update
-);
-orderRoutes.put(
-  '/:id/products',
-  [celebrate({ [Segments.BODY]: updateProductsInOrderSchema })],
-  orderController.updateProductsInOrder
 );
 
 export { orderRoutes };

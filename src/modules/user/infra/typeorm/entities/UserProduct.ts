@@ -1,5 +1,5 @@
-import { IOrderProductDTO } from '@modules/order/dtos/IOrderProductDTO';
 import { Product } from '@modules/product/infra/typeorm/entities/Product';
+import { IUserProductDTO } from '@modules/user/dtos/IUserProductDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import {
   Column,
@@ -8,10 +8,10 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
-import { Order } from './Order';
+import { User } from './User';
 
-@Entity('order_product')
-export class OrderProduct extends DefaultEntity implements IOrderProductDTO {
+@Entity('user_product')
+export class UserProduct extends DefaultEntity implements IUserProductDTO {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,9 +19,9 @@ export class OrderProduct extends DefaultEntity implements IOrderProductDTO {
   @JoinColumn()
   product: Product;
 
-  @ManyToOne(() => Order, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn()
-  order: Order;
+  user: User;
 
   @Column()
   quantity: number;
@@ -37,4 +37,7 @@ export class OrderProduct extends DefaultEntity implements IOrderProductDTO {
 
   @Column({ nullable: true })
   observation: string;
+
+  @Column()
+  userId: number;
 }

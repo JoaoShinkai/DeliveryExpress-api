@@ -33,13 +33,6 @@ export class OrderRepository implements IOrderRepository {
     await this.repository.update(id, data);
   }
 
-  async updateProductsInOrder(
-    id: number,
-    data: Partial<IOrderDTO>
-  ): Promise<void> {
-    await this.repository.save({ ...data, id: Number(id) });
-  }
-
   async delete(id: number): Promise<void> {
     await this.repository.delete(id);
   }

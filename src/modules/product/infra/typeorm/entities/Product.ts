@@ -36,6 +36,6 @@ export class Product extends DefaultEntity implements IProductDTO {
   @OneToMany(() => Additional, () => Product, { onDelete: 'CASCADE' })
   additionals: Additional[];
 
-  // @OneToMany(() => OrderProduct, () => Product)
+  // @OneToMany(() => OrderProduct, order => order.product)
   // orderProducts: OrderProduct[];
 }

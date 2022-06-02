@@ -15,11 +15,11 @@ export class OrderProduct extends DefaultEntity implements IOrderProductDTO {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Product)
+  @ManyToOne(() => Product, { eager: true })
   @JoinColumn()
   product: Product;
 
-  @ManyToOne(() => Order)
+  @ManyToOne(() => Order, { onDelete: 'CASCADE' })
   @JoinColumn()
   order: Order;
 

@@ -86,7 +86,10 @@ export class Order extends DefaultEntity implements IOrderDTO {
   @ManyToOne(() => User, () => Order)
   user: User;
 
-  @OneToMany(() => OrderProduct, product => product.order, { cascade: true })
+  @OneToMany(() => OrderProduct, product => product.order, {
+    onDelete: 'CASCADE',
+    cascade: true
+  })
   @JoinColumn()
   products: OrderProduct[];
 }

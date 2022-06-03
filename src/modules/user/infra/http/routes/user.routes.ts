@@ -1,6 +1,7 @@
 import createUserSchema from '@modules/user/schemas/createUser.schema';
 import updateCartProductsSchema from '@modules/user/schemas/updateCartProducts.schema';
 import updateUserSchema from '@modules/user/schemas/updateUser.schema';
+import adminAuth from '@shared/infra/http/middlewares/adminAuth';
 import { celebrate, Segments } from 'celebrate';
 import Router from 'express';
 import { UserController } from '../controller/UserController';
@@ -16,7 +17,7 @@ userRoutes.post(
 );
 userRoutes.post('/login', userController.login);
 
-userRoutes.get('/', userController.list);
+userRoutes.get('/', adminAuth, userController.list);
 userRoutes.get('/:id', userController.listById);
 userRoutes.put(
   '/:id',

@@ -5,6 +5,7 @@ import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn
@@ -27,6 +28,7 @@ export class Category extends DefaultEntity implements ICategoryDTO {
   @ManyToOne(() => Store, () => Category)
   store: Store;
 
-  @OneToMany(() => Product, () => Category)
+  @OneToMany(() => Product, product => product.category, { eager: true })
+  @JoinColumn()
   products: Product[];
 }

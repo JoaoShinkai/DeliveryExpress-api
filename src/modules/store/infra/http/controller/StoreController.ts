@@ -1,4 +1,5 @@
 import { CreateStoreService } from '@modules/store/services/CreateStoreService';
+import { ListStoreByIdService } from '@modules/store/services/ListStoreByIdService';
 import { ListStoreService } from '@modules/store/services/ListStoreService';
 import { UpdateStoreService } from '@modules/store/services/UpdateStoreService';
 import { Request, Response } from 'express';
@@ -20,6 +21,16 @@ export class StoreController {
     try {
       const listStoreService = container.resolve(ListStoreService);
       res.json(await listStoreService.execute());
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  }
+
+  async listById(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const listStoreByIdService = container.resolve(ListStoreByIdService);
+      res.json(await listStoreByIdService.execute(Number(id)));
     } catch (err: any) {
       res.status(500).json({ message: err.message });
     }

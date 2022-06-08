@@ -16,6 +16,7 @@ storeRoutes.post(
 );
 
 storeRoutes.get('/', userAuth, storeController.list);
+storeRoutes.get('/:id', userAuth, storeController.listById);
 storeRoutes.put(
   '/:id',
   [celebrate({ [Segments.BODY]: updateStoreSchema })],

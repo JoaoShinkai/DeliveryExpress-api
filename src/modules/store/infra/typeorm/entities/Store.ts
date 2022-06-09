@@ -8,6 +8,12 @@ export class Store extends DefaultEntity implements IStoreDTO {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({
+    default:
+      'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'
+  })
+  image: string;
+
   @Column()
   name: string;
 

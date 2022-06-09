@@ -5,7 +5,8 @@ const updateStoreSchema = Joi.object({
   email: Joi.string().email(),
   password: Joi.string(),
   delivery: Joi.number(),
-  status: Joi.number()
+  status: Joi.number(),
+  image: Joi.string()
 });
 
 export default updateStoreSchema.options({

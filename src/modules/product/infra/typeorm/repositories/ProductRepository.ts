@@ -18,6 +18,10 @@ export class ProductRepository implements IProductRepository {
     return this.repository.find();
   }
 
+  async findById(id: number): Promise<IProductDTO | undefined> {
+    return this.repository.findOne(id);
+  }
+
   async update(id: number, data: Partial<IProductDTO>): Promise<void> {
     await this.repository.update(id, data);
   }

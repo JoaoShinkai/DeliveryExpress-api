@@ -19,7 +19,14 @@ export class AdditionalRepository implements IAdditionalRepository {
   }
 
   async findByProduct(productId: number): Promise<IAdditionalDTO[]> {
-    return this.repository.find({ productId });
+    const res = await this.repository.find({
+      where: {
+        productId
+      },
+      relations: ['optionAdditionals']
+    });
+
+    return res;
   }
 
   async update(id: number, data: Partial<IAdditionalDTO>): Promise<void> {

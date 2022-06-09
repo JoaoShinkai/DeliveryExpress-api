@@ -27,6 +27,10 @@ export class Additional extends DefaultEntity implements IAdditionalDTO {
   @ManyToOne(() => Product, () => Additional, { onDelete: 'CASCADE' })
   product: Product;
 
-  @OneToMany(() => OptionAdditional, () => Additional, { onDelete: 'CASCADE' })
+  @OneToMany(
+    () => OptionAdditional,
+    optionAdditional => optionAdditional.additional,
+    { onDelete: 'CASCADE' }
+  )
   optionAdditionals: OptionAdditional[];
 }

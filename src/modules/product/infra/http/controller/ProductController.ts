@@ -1,4 +1,5 @@
 import { CreateProductService } from '@modules/product/services/CreateProductService';
+import { ListByIdProductService } from '@modules/product/services/ListByIdProductService';
 import { ListProductService } from '@modules/product/services/ListProductService';
 import { UpdateProductService } from '@modules/product/services/UpdateProductService';
 import { Request, Response } from 'express';
@@ -22,6 +23,17 @@ export class ProductController {
       const listProductService = container.resolve(ListProductService);
 
       res.json(await listProductService.execute());
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  }
+
+  async listById(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const listByIdProductService = container.resolve(ListByIdProductService);
+
+      res.json(await listByIdProductService.execute(Number(id)));
     } catch (err: any) {
       res.status(500).json({ message: err.message });
     }

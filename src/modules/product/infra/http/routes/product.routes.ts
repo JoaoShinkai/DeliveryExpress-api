@@ -13,6 +13,7 @@ productRoutes.post(
 );
 
 productRoutes.get('/', productController.list);
+productRoutes.get('/:id', productController.listById);
 productRoutes.put('/:id', productController.update);
 
 export { productRoutes };

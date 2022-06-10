@@ -23,7 +23,7 @@ export interface IOrderDTO extends IDefaultDTO {
   number: string;
   complement: string;
   reference: string;
-  user?: IUserDTO;
-  store?: IStoreDTO;
+  user?: Partial<IUserDTO>;
+  store?: Partial<IStoreDTO>;
   products: IOrderProductDTO[];
 }

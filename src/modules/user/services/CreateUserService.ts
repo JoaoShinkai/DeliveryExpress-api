@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { IUserDTO } from '../dtos/IUserDTO';
 import { IUserRepository } from '../repositories/IUserRepository';
@@ -15,7 +16,7 @@ export class CreateUserService {
     );
 
     if (emailAlreadyExists) {
-      throw new Error('Email already exists');
+      throw new AppError('Email already exists');
     }
 
     const newUser = user;

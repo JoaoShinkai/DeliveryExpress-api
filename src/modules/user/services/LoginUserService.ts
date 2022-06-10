@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
@@ -20,13 +21,13 @@ export class LoginUserService {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error('Email and/or password invalid');
+      throw new AppError('Email and/or password invalid', 401);
     }
 
     const isValidPassword = await bcryptjs.compare(password, user.password);
 
     if (!isValidPassword) {
-      throw new Error('Email and/or password invalid');
+      throw new AppError('Email and/or password invalid', 401);
     }
 
     const token = jwt.sign(

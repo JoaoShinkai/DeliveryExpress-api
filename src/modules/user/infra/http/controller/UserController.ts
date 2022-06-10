@@ -4,54 +4,62 @@ import { ListUserService } from '@modules/user/services/ListUserService';
 import { LoginUserService } from '@modules/user/services/LoginUserService';
 import { UpdateCartProductsService } from '@modules/user/services/UpdateCartProductsService';
 import { UpdateUserService } from '@modules/user/services/UpdateUserService';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 export class UserController {
-  async create(req: Request, res: Response): Promise<void> {
+  async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const data = req.body;
 
       const createUserService = container.resolve(CreateUserService);
 
       res.json(await createUserService.execute(data));
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
+    } catch (error) {
+      next(error);
     }
   }
 
-  async list(req: Request, res: Response): Promise<void> {
+  async list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const listUserService = container.resolve(ListUserService);
       res.json(await listUserService.execute());
-    } catch (err: any) {
-      res.status(500).json({ message: err.message });
+    } catch (error) {
+      next(error);
     }
   }
 
-  async listById(req: Request, res: Response): Promise<void> {
+  async listById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
       const { id } = req.params;
       const listByIdUserService = container.resolve(ListByIdUserService);
       res.json(await listByIdUserService.execute(Number(id)));
-    } catch (err: any) {
-      res.status(500).json({ message: err.message });
+    } catch (error) {
+      next(error);
     }
   }
 
-  async update(req: Request, res: Response): Promise<void> {
+  async update(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;
       const data = req.body;
 
       const updateUserService = container.resolve(UpdateUserService);
       res.json(await updateUserService.execute(Number(id), data));
-    } catch (err: any) {
-      res.status(500).json({ message: err.message });
+    } catch (error) {
+      next(error);
     }
   }
 
-  async updateCartProducts(req: Request, res: Response): Promise<void> {
+  async updateCartProducts(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
       const { id } = req.params;
       const data = req.body;
@@ -61,20 +69,20 @@ export class UserController {
       );
 
       res.json(await updateCartProductService.execute(Number(id), data));
-    } catch (err: any) {
-      res.status(500).json({ message: err.message });
+    } catch (error) {
+      next(error);
     }
   }
 
-  async login(req: Request, res: Response): Promise<void> {
+  async login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { email, password } = req.body;
 
       const loginUserService = container.resolve(LoginUserService);
 
       res.json(await loginUserService.execute(email, password));
-    } catch (err: any) {
-      res.status(401).json({ message: err.message });
+    } catch (error) {
+      next(error);
     }
   }
 }

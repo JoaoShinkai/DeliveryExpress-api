@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { IProductDTO } from '../dtos/IProductDTO';
 import { IProductRepository } from '../repositories/IProductRepository';
@@ -13,7 +14,7 @@ export class ListByIdProductService {
     const product = await this.productRepository.findById(id);
 
     if (product === undefined) {
-      throw new Error("This products doesn't exists");
+      throw new AppError("This products doesn't exists");
     }
 
     return product;

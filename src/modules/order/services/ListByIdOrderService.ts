@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { IOrderDTO } from '../dtos/IOrderDTO';
 import { IOrderRepository } from '../repositories/IOrderRepository';
@@ -13,7 +14,7 @@ export class ListByIdOrderService {
     const order = await this.orderRepository.findById(id);
 
     if (!order) {
-      throw new Error("This order doesn't exists");
+      throw new AppError('Cannot find an order with this id');
     }
 
     if (order.user) {

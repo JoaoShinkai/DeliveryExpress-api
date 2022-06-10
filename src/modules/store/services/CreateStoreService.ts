@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { IStoreDTO } from '../dtos/IStoreDTO';
 import { IStoreRepository } from '../repositories/IStoreRepository';
@@ -15,7 +16,7 @@ export class CreateStoreService {
     );
 
     if (emailAlreadyExists) {
-      throw new Error('Email already exists');
+      throw new AppError('Email already exists');
     }
 
     const newStore = store;

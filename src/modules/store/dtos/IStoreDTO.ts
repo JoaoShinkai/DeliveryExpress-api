@@ -5,7 +5,7 @@ export interface IStoreDTO extends IDefaultDTO {
 
   email: string;
 
-  password?: string;
+  password: string;
 
   delivery: number;
 

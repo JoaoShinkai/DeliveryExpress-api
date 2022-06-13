@@ -1,4 +1,5 @@
 import { CreateProductService } from '@modules/product/services/CreateProductService';
+import { ListByCategoryProductService } from '@modules/product/services/ListByCategoryProductService';
 import { ListByIdProductService } from '@modules/product/services/ListByIdProductService';
 import { ListProductService } from '@modules/product/services/ListProductService';
 import { UpdateProductService } from '@modules/product/services/UpdateProductService';
@@ -38,6 +39,23 @@ export class ProductController {
       const listByIdProductService = container.resolve(ListByIdProductService);
 
       res.json(await listByIdProductService.execute(Number(id)));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async listByCategory(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { id } = req.params;
+      const listByCategoryProductService = container.resolve(
+        ListByCategoryProductService
+      );
+
+      res.json(await listByCategoryProductService.execute(Number(id)));
     } catch (error) {
       next(error);
     }

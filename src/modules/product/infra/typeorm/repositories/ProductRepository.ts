@@ -22,6 +22,10 @@ export class ProductRepository implements IProductRepository {
     return this.repository.findOne(id);
   }
 
+  async findByCategory(categoryId: number): Promise<IProductDTO[]> {
+    return this.repository.find({ categoryId });
+  }
+
   async update(id: number, data: Partial<IProductDTO>): Promise<void> {
     await this.repository.update(id, data);
   }

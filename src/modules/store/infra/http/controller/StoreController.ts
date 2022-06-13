@@ -1,6 +1,7 @@
 import { CreateStoreService } from '@modules/store/services/CreateStoreService';
 import { ListStoreByIdService } from '@modules/store/services/ListStoreByIdService';
 import { ListStoreService } from '@modules/store/services/ListStoreService';
+import { LoginStoreService } from '@modules/store/services/LoginStoreService';
 import { UpdateStoreService } from '@modules/store/services/UpdateStoreService';
 import { NextFunction, Request, Response } from 'express';
 import { container } from 'tsyringe';
@@ -48,6 +49,18 @@ export class StoreController {
       const updateStoreService = container.resolve(UpdateStoreService);
 
       res.json(await updateStoreService.execute(Number(id), data));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, password } = req.body;
+
+      const loginStoreService = container.resolve(LoginStoreService);
+
+      res.json(await loginStoreService.execute(email, password));
     } catch (error) {
       next(error);
     }

@@ -18,6 +18,6 @@ productRoutes.get('/', productController.list);
 productRoutes.get('/:id', productController.listById);
 productRoutes.get('/category/:id', storeAuth, productController.listByCategory);
 productRoutes.put('/:id', productController.update);
-productRoutes.delete('/:id', productController.delete);
+productRoutes.delete('/:id', storeAuth, productController.delete);
 
 export { productRoutes };

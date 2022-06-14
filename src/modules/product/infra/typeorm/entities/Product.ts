@@ -21,7 +21,7 @@ export class Product extends DefaultEntity implements IProductDTO {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
   @Column()

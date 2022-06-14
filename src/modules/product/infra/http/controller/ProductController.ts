@@ -1,4 +1,5 @@
 import { CreateProductService } from '@modules/product/services/CreateProductService';
+import { DeleteProductService } from '@modules/product/services/DeleteProductService';
 import { ListByCategoryProductService } from '@modules/product/services/ListByCategoryProductService';
 import { ListByIdProductService } from '@modules/product/services/ListByIdProductService';
 import { ListProductService } from '@modules/product/services/ListProductService';
@@ -69,6 +70,18 @@ export class ProductController {
       const updateProductService = container.resolve(UpdateProductService);
 
       res.json(await updateProductService.execute(Number(id), data));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+
+      const deleteProductService = container.resolve(DeleteProductService);
+
+      res.json(await deleteProductService.execute(Number(id)));
     } catch (error) {
       next(error);
     }

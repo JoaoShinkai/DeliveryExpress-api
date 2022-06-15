@@ -1,4 +1,5 @@
 import { CreateOptionAdditionalService } from '@modules/optionAdditional/services/CreateOptionAdditionalService';
+import { ListOptionAdditionalByIdService } from '@modules/optionAdditional/services/ListOptionAdditionalByIdService';
 import { ListOptionAdditionalService } from '@modules/optionAdditional/services/ListOptionAdditionalService';
 import { UpdateOptionAdditionalService } from '@modules/optionAdditional/services/UpdateOptionAdditionalService';
 import { NextFunction, Request, Response } from 'express';
@@ -26,6 +27,23 @@ export class OptionAdditionalController {
       );
 
       res.json(await listOptionAdditionalService.execute());
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async listById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { id } = req.params;
+      const listOptionAdditionalByIdService = container.resolve(
+        ListOptionAdditionalByIdService
+      );
+
+      res.json(await listOptionAdditionalByIdService.execute(Number(id)));
     } catch (error) {
       next(error);
     }

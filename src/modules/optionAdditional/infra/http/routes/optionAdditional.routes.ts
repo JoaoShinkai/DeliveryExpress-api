@@ -14,6 +14,7 @@ optionAdditionalRoutes.post(
 );
 
 optionAdditionalRoutes.get('/', optionAdditionalController.list);
+optionAdditionalRoutes.get('/:id', optionAdditionalController.listById);
 
 optionAdditionalRoutes.put(
   '/:id',

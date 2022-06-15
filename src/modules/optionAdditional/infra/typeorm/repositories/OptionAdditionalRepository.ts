@@ -18,6 +18,10 @@ export class OptionAdditionalRepository implements IOptionAdditionalRepository {
     return this.repository.find();
   }
 
+  async findById(id: number): Promise<IOptionAdditionalDTO | undefined> {
+    return this.repository.findOne(id);
+  }
+
   async update(id: number, data: Partial<IOptionAdditionalDTO>): Promise<void> {
     await this.repository.update(id, data);
   }

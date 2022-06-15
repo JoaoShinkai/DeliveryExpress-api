@@ -21,4 +21,6 @@ additionalRoutes.put(
   additionalController.update
 );
 
+additionalRoutes.delete('/:id', additionalController.delete);
+
 export { additionalRoutes };

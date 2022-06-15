@@ -1,4 +1,5 @@
 import { CreateAdditionalService } from '@modules/additional/services/CreateAdditionalService';
+import { DeleteAdditionalService } from '@modules/additional/services/DeleteAdditionalService';
 import { ListByProductService } from '@modules/additional/services/ListByProductService';
 import { UpdateAdditionalService } from '@modules/additional/services/UpdateAdditionalService';
 import { NextFunction, Request, Response } from 'express';
@@ -42,6 +43,19 @@ export class AdditionalController {
       );
 
       res.json(await updateAdditionalService.execute(Number(id), data));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const deleteAdditionalService = container.resolve(
+        DeleteAdditionalService
+      );
+
+      res.json(await deleteAdditionalService.execute(Number(id)));
     } catch (error) {
       next(error);
     }

@@ -6,9 +6,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import { User } from './User';
+import { UserProductOptionAdditional } from './UserProductOptionAdditional';
 
 @Entity('user_product')
 export class UserProduct extends DefaultEntity implements IUserProductDTO {
@@ -22,6 +24,17 @@ export class UserProduct extends DefaultEntity implements IUserProductDTO {
   @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
+
+  @OneToMany(
+    () => UserProductOptionAdditional,
+    additional => additional.userProduct,
+    {
+      onDelete: 'CASCADE',
+      cascade: true
+    }
+  )
+  @JoinColumn()
+  additionals: UserProductOptionAdditional[];
 
   @Column()
   quantity: number;
@@ -37,7 +50,4 @@ export class UserProduct extends DefaultEntity implements IUserProductDTO {
 
   @Column({ nullable: true })
   observation: string;
-
-  @Column()
-  userId: number;
 }

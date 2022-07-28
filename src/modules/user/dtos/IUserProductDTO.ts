@@ -1,5 +1,7 @@
 import { IProductDTO } from '@modules/product/dtos/IProductDTO';
 import { IDefaultDTO } from '@shared/dtos/IDefaultDTO';
+import { IUserDTO } from './IUserDTO';
+import { IUserProductOptionAdditionalDTO } from './IUserProductOptionAdditionalDTO';
 
 export interface IUserProductDTO extends IDefaultDTO {
   quantity: number;
@@ -8,5 +10,6 @@ export interface IUserProductDTO extends IDefaultDTO {
   discount: number;
   observation: string;
   product: IProductDTO;
-  userId: number;
+  user: IUserDTO;
+  additionals: IUserProductOptionAdditionalDTO[];
 }

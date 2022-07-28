@@ -37,16 +37,20 @@ export class UserRepository implements IUserRepository {
     await this.repository.update(id, data);
   }
 
-  async updateUserProducts(id: number, data: Partial<IUserDTO>): Promise<void> {
-    await this.repository.save({ ...data, id });
-  }
+  // async updateUserProducts(id: number, data: Partial<IUserDTO>): Promise<void> {
+  //   await this.repository.save({ ...data, id });
+  // }
 
   async delete(id: number): Promise<void> {
     await this.repository.delete(id);
   }
 
   async deleteCartProducts(userId: number): Promise<void> {
-    await this.repositoryUserProduct.delete({ userId });
+    await this.repositoryUserProduct.delete({
+      user: {
+        id: userId
+      }
+    });
   }
 
   async hashPassword(password: string): Promise<string> {

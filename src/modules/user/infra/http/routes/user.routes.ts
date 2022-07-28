@@ -28,10 +28,5 @@ userRoutes.put(
 );
 userRoutes.post('/user-product', userAuth, userController.addProductToCart);
 userRoutes.delete('/user-product', userAuth, userController.deleteCartItems);
-// userRoutes.put(
-//   '/:id/products',
-//   [celebrate({ [Segments.BODY]: updateCartProductsSchema })],
-//   userController.updateCartProducts
-// );
 
 export { userRoutes };

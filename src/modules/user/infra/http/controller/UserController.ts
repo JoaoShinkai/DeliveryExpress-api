@@ -56,25 +56,6 @@ export class UserController {
     }
   }
 
-  // async updateCartProducts(
-  //   req: Request,
-  //   res: Response,
-  //   next: NextFunction
-  // ): Promise<void> {
-  //   try {
-  //     const { id } = req.params;
-  //     const data = req.body;
-
-  //     const updateCartProductService = container.resolve(
-  //       UpdateCartProductsService
-  //     );
-
-  //     res.json(await updateCartProductService.execute(Number(id), data));
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
-
   async login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { email, password } = req.body;

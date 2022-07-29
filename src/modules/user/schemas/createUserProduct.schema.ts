@@ -5,6 +5,7 @@ const createUserProductSchema = Joi.object({
   quantity: Joi.number().required(),
   unityPrice: Joi.number().required(),
   amount: Joi.number().required(),
+  observation: Joi.string(),
   additionals: Joi.array().items(
     Joi.object({
       name: Joi.string().required(),

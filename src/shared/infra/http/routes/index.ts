@@ -6,6 +6,7 @@ import { orderRoutes } from '@modules/order/infra/http/routes/order.routes';
 import { productRoutes } from '@modules/product/infra/http/routes/product.routes';
 import { storeRoutes } from '@modules/store/infra/http/routes/store.routes';
 import { userRoutes } from '@modules/user/infra/http/routes/user.routes';
+import { userProductRoutes } from '@modules/userProduct/infra/http/routes/userProduct.routes';
 import Router from 'express';
 
 const routes = Router();
@@ -18,5 +19,6 @@ routes.use('/additional', additionalRoutes);
 routes.use('/optionAdditional', optionAdditionalRoutes);
 routes.use('/address', addressRoutes);
 routes.use('/order', orderRoutes);
+routes.use('/userProduct', userProductRoutes);
 
 export { routes };

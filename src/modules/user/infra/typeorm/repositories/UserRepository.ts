@@ -3,8 +3,8 @@ import { IUserRepository } from '@modules/user/repositories/IUserRepository';
 import bcryptjs from 'bcryptjs';
 import { injectable } from 'tsyringe';
 import { getRepository, Repository } from 'typeorm';
+import { UserProduct } from '../../../../userProduct/infra/typeorm/entities/UserProduct';
 import { User } from '../entities/User';
-import { UserProduct } from '../entities/UserProduct';
 
 @injectable()
 export class UserRepository implements IUserRepository {

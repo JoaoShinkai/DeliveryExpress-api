@@ -1,5 +1,5 @@
 import { Product } from '@modules/product/infra/typeorm/entities/Product';
-import { IUserProductDTO } from '@modules/user/dtos/IUserProductDTO';
+import { IUserProductDTO } from '@modules/userProduct/dtos/IUserProductDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import {
   Column,
@@ -9,7 +9,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
-import { User } from './User';
+import { User } from '../../../../user/infra/typeorm/entities/User';
 import { UserProductOptionAdditional } from './UserProductOptionAdditional';
 
 @Entity('user_product')

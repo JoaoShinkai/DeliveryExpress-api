@@ -1,6 +1,4 @@
-import { CreateUserProductService } from '@modules/user/services/CreateUserProductService';
 import { CreateUserService } from '@modules/user/services/CreateUserService';
-import { DeleteCartItems } from '@modules/user/services/DeleteCartItems';
 import { ListByIdUserService } from '@modules/user/services/ListByIdUserService';
 import { ListUserService } from '@modules/user/services/ListUserService';
 import { LoginUserService } from '@modules/user/services/LoginUserService';
@@ -65,40 +63,6 @@ export class UserController {
       res.json(await loginUserService.execute(email, password));
     } catch (error) {
       next(error);
-    }
-  }
-
-  async addProductToCart(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<void> {
-    try {
-      const data = req.body;
-
-      const { userId: id } = req;
-
-      const service = container.resolve(CreateUserProductService);
-
-      res.json(await service.execute({ ...data, user: { id } }));
-    } catch (err) {
-      next(err);
-    }
-  }
-
-  async deleteCartItems(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<void> {
-    try {
-      const { userId } = req;
-
-      const service = container.resolve(DeleteCartItems);
-
-      res.json(await service.execute(userId));
-    } catch (err) {
-      next(err);
     }
   }
 }

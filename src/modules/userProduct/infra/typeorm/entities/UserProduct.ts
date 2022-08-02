@@ -17,7 +17,7 @@ export class UserProduct extends DefaultEntity implements IUserProductDTO {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Product, { nullable: false, eager: true })
+  @ManyToOne(() => Product, { nullable: false })
   @JoinColumn()
   product: Product;
 

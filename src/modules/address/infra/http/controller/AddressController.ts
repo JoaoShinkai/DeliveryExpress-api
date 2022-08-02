@@ -7,10 +7,11 @@ import { container } from 'tsyringe';
 export class AddressController {
   async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+      const { userId } = req;
       const data = req.body;
       const createAddressService = container.resolve(CreateAddressService);
 
-      res.json(await createAddressService.execute(data));
+      res.json(await createAddressService.execute({ ...data, userId }));
     } catch (error) {
       next(error);
     }

@@ -10,6 +10,7 @@ const addressController = new AddressController();
 
 addressRoutes.post(
   '/',
+  userAuth,
   [celebrate({ [Segments.BODY]: createAddressSchema })],
   addressController.create
 );

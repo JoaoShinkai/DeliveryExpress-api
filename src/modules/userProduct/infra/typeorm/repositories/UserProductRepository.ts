@@ -23,7 +23,12 @@ export class UserProductRepository implements IUserProductRepository {
       where: {
         user: { id: userId }
       },
-      relations: ['additionals']
+      relations: [
+        'additionals',
+        'product',
+        'product.category',
+        'product.category.store'
+      ]
     });
   }
 }

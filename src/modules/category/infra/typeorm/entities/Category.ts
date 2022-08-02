@@ -28,7 +28,7 @@ export class Category extends DefaultEntity implements ICategoryDTO {
   @ManyToOne(() => Store, () => Category)
   store: Store;
 
-  @OneToMany(() => Product, product => product.category, { eager: true })
+  @OneToMany(() => Product, product => product.category)
   @JoinColumn()
   products: Product[];
 }

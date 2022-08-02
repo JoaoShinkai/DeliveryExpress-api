@@ -23,7 +23,12 @@ export class CategoryRepository implements ICategoryRepository {
   }
 
   async findByStore(storeId: number): Promise<ICategoryDTO[]> {
-    return this.repository.find({ storeId });
+    return this.repository.find({
+      where: {
+        storeId
+      },
+      relations: ['products']
+    });
   }
 
   async update(id: number, data: Partial<ICategoryDTO>): Promise<void> {

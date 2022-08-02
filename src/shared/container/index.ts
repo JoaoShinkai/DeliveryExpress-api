@@ -12,10 +12,10 @@ import { ProductRepository } from '@modules/product/infra/typeorm/repositories/P
 import { IProductRepository } from '@modules/product/repositories/IProductRepository';
 import { StoreRepository } from '@modules/store/infra/typeorm/repositories/StoreRepository';
 import { IStoreRepository } from '@modules/store/repositories/IStoreRepository';
-import { UserProductRepository } from '@modules/user/infra/typeorm/repositories/UserProductRepository';
 import { UserRepository } from '@modules/user/infra/typeorm/repositories/UserRepository';
-import { IUserProductRepository } from '@modules/user/repositories/IUserProductRepository';
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
+import { UserProductRepository } from '@modules/userProduct/infra/typeorm/repositories/UserProductRepository';
+import { IUserProductRepository } from '@modules/userProduct/repositories/IUserProductRepository';
 import { container } from 'tsyringe';
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);

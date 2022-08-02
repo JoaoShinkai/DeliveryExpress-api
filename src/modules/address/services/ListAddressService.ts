@@ -9,7 +9,7 @@ export class ListAddressService {
     private addressRepository: IAddressRepository
   ) {}
 
-  public async execute(): Promise<IAddressDTO[]> {
-    return this.addressRepository.find();
+  public async execute(userId: number): Promise<IAddressDTO[]> {
+    return this.addressRepository.find(userId);
   }
 }

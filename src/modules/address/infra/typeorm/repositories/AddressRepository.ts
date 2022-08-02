@@ -14,8 +14,8 @@ export class AddressRepository implements IAddressRepository {
     await this.repository.save(address);
   }
 
-  async find(): Promise<IAddressDTO[]> {
-    return this.repository.find();
+  async find(userId: number): Promise<IAddressDTO[]> {
+    return this.repository.find({ user: { id: userId } });
   }
 
   async update(id: number, data: Partial<IAddressDTO>): Promise<void> {

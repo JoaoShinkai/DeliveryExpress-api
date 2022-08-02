@@ -1,6 +1,5 @@
 import { AuthController } from '@modules/auth/AuthController';
 import createUserSchema from '@modules/user/schemas/createUser.schema';
-import createUserProductSchema from '@modules/user/schemas/createUserProduct.schema';
 import updateUserSchema from '@modules/user/schemas/updateUser.schema';
 import userAuth from '@shared/infra/http/middlewares/userAuth';
 import { celebrate, Segments } from 'celebrate';
@@ -27,12 +26,5 @@ userRoutes.put(
   [celebrate({ [Segments.BODY]: updateUserSchema })],
   userController.update
 );
-userRoutes.post(
-  '/user-product',
-  [celebrate({ [Segments.BODY]: createUserProductSchema })],
-  userAuth,
-  userController.addProductToCart
-);
-userRoutes.delete('/user-product', userAuth, userController.deleteCartItems);
 
 export { userRoutes };

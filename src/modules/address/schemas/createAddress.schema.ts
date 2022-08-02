@@ -8,8 +8,7 @@ const createAddressSchema = Joi.object({
   street: Joi.string().required(),
   number: Joi.string().required(),
   complement: Joi.string(),
-  reference: Joi.string(),
-  userId: Joi.number().required()
+  reference: Joi.string()
 });
 
 export default createAddressSchema.options({

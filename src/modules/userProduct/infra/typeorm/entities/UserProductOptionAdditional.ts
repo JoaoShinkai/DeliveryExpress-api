@@ -1,5 +1,5 @@
 import { OptionAdditional } from '@modules/optionAdditional/infra/typeorm/entities/OptionAdditional';
-import { IUserProductOptionAdditionalDTO } from '@modules/user/dtos/IUserProductOptionAdditionalDTO';
+import { IUserProductOptionAdditionalDTO } from '@modules/userProduct/dtos/IUserProductOptionAdditionalDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import {
   Column,

@@ -7,10 +7,11 @@ import { container } from 'tsyringe';
 export class AddressController {
   async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+      const { userId } = req;
       const data = req.body;
       const createAddressService = container.resolve(CreateAddressService);
 
-      res.json(await createAddressService.execute(data));
+      res.json(await createAddressService.execute({ ...data, userId }));
     } catch (error) {
       next(error);
     }
@@ -19,7 +20,8 @@ export class AddressController {
   async list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const listAddressService = container.resolve(ListAddressService);
-      res.json(await listAddressService.execute());
+      const { userId } = req;
+      res.json(await listAddressService.execute(userId));
     } catch (error) {
       next(error);
     }

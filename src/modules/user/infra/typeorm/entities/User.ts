@@ -9,7 +9,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
-import { UserProduct } from './UserProduct';
+import { UserProduct } from '../../../../userProduct/infra/typeorm/entities/UserProduct';
 
 @Entity('user')
 export class User extends DefaultEntity implements IUserDTO {

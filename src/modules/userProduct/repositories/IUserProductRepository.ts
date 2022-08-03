@@ -4,4 +4,5 @@ export interface IUserProductRepository {
   create(data: IUserProductDTO): Promise<void>;
   deleteByUser(userId: number): Promise<void>;
   list(userId: number): Promise<IUserProductDTO[]>;
+  delete(userId: number, id: number): Promise<void>;
 }

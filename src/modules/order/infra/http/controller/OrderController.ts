@@ -1,7 +1,6 @@
 import { CreateOrderService } from '@modules/order/services/CreateOrderService';
 import { ListByIdOrderService } from '@modules/order/services/ListByIdOrderService';
 import { ListByUserOrderService } from '@modules/order/services/ListByUserOrderService';
-import { ListOrderService } from '@modules/order/services/ListOrderService';
 import { UpdateOrderService } from '@modules/order/services/UpdateOrderService';
 import { NextFunction, Request, Response } from 'express';
 import { container } from 'tsyringe';
@@ -11,19 +10,11 @@ export class OrderController {
     try {
       const data = req.body;
 
+      const { userId } = req;
+
       const createOrderService = container.resolve(CreateOrderService);
 
-      res.json(await createOrderService.execute(data));
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async list(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-      const listOrderService = container.resolve(ListOrderService);
-
-      res.json(await listOrderService.execute());
+      res.json(await createOrderService.execute({ ...data, userId }));
     } catch (error) {
       next(error);
     }
@@ -44,16 +35,12 @@ export class OrderController {
     }
   }
 
-  async listByUser(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<void> {
+  async list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { id } = req.params;
+      const { userId } = req;
       const listByUserOrderService = container.resolve(ListByUserOrderService);
 
-      res.json(await listByUserOrderService.execute(Number(id)));
+      res.json(await listByUserOrderService.execute(Number(userId)));
     } catch (error) {
       next(error);
     }

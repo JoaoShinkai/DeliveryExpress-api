@@ -12,7 +12,6 @@ const createOrderSchema = Joi.object({
   number: Joi.string().required(),
   complement: Joi.string(),
   reference: Joi.string(),
-  userId: Joi.number().required(),
   storeId: Joi.number().required(),
   products: Joi.array()
     .items(

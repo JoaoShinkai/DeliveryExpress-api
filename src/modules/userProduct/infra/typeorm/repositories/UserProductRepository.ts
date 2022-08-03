@@ -31,4 +31,11 @@ export class UserProductRepository implements IUserProductRepository {
       ]
     });
   }
+
+  async delete(userId: number, id: number): Promise<void> {
+    await this.repository.delete({
+      user: { id: userId },
+      id
+    });
+  }
 }

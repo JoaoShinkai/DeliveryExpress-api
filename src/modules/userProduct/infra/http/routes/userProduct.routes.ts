@@ -15,6 +15,7 @@ userProductRoutes.post(
   userProductController.addProductToCart
 );
 userProductRoutes.delete('/', userAuth, userProductController.deleteCartItems);
+userProductRoutes.delete('/:id', userAuth, userProductController.delete);
 userProductRoutes.get('/', userAuth, userProductController.listCartItems);
 
 export { userProductRoutes };

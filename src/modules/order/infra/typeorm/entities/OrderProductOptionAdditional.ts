@@ -1,5 +1,6 @@
 import { OptionAdditional } from '@modules/optionAdditional/infra/typeorm/entities/OptionAdditional';
-import { IUserProductOptionAdditionalDTO } from '@modules/userProduct/dtos/IUserProductOptionAdditionalDTO';
+import { IOrderProductDTO } from '@modules/order/dtos/IOrderProductDTO';
+import { IOrderProductOptionAdditionalDTO } from '@modules/order/dtos/IOrderProductOptionAdditionalDTO';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
 import {
   Column,
@@ -8,12 +9,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
-import { UserProduct } from './UserProduct';
+import { OrderProduct } from './OrderProduct';
 
-@Entity('userproduct_optionadditional')
-export class UserProductOptionAdditional
+@Entity('orderproduct_optionadditional')
+export class OrderProductOptionAdditional
   extends DefaultEntity
-  implements IUserProductOptionAdditionalDTO
+  implements IOrderProductOptionAdditionalDTO
 {
   @PrimaryGeneratedColumn()
   id: number;
@@ -24,11 +25,11 @@ export class UserProductOptionAdditional
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
 
-  @ManyToOne(() => OptionAdditional)
+  @ManyToOne(() => OptionAdditional, { nullable: false })
   @JoinColumn()
   optionAdditional: OptionAdditional;
 
-  @ManyToOne(() => UserProduct, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => OrderProduct, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn()
-  userProduct: UserProduct;
+  orderProduct: IOrderProductDTO;
 }

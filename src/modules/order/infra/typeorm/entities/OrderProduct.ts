@@ -6,9 +6,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import { Order } from './Order';
+import { OrderProductOptionAdditional } from './OrderProductOptionAdditional';
 
 @Entity('order_product')
 export class OrderProduct extends DefaultEntity implements IOrderProductDTO {
@@ -32,9 +34,20 @@ export class OrderProduct extends DefaultEntity implements IOrderProductDTO {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: '0.00' })
   discount: number;
 
   @Column({ nullable: true })
   observation: string;
+
+  @OneToMany(
+    () => OrderProductOptionAdditional,
+    additional => additional.orderProduct,
+    {
+      onDelete: 'CASCADE',
+      cascade: true
+    }
+  )
+  @JoinColumn()
+  additionals: OrderProductOptionAdditional[];
 }

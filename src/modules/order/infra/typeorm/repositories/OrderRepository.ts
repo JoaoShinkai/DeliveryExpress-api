@@ -20,8 +20,11 @@ export class OrderRepository implements IOrderRepository {
   }
 
   async findById(id: number): Promise<IOrderDTO | undefined> {
-    return this.repository.findOne(id, {
-      relations: ['user', 'store', 'products']
+    return this.repository.findOne({
+      where: {
+        id
+      },
+      relations: ['user', 'store', 'products', 'products.additionals']
     });
   }
 

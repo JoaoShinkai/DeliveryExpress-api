@@ -10,6 +10,7 @@ export class CreateOrderService {
   ) {}
 
   public async execute(order: IOrderDTO): Promise<void> {
+    console.log(order.products[0].additionals);
     await this.orderRepository.create(order);
   }
 }

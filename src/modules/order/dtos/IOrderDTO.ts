@@ -1,3 +1,4 @@
+import { IOrderStatusDTO } from '@modules/orderStatus/dtos/IOrderStatusDTO';
 import { IStoreDTO } from '@modules/store/dtos/IStoreDTO';
 import { IUserDTO } from '@modules/user/dtos/IUserDTO';
 import { IDefaultDTO } from '@shared/dtos/IDefaultDTO';
@@ -6,7 +7,7 @@ import { IOrderProductDTO } from './IOrderProductDTO';
 export interface IOrderDTO extends IDefaultDTO {
   userId: number;
   storeId: number;
-  status: number;
+  status: IOrderStatusDTO;
   date: string;
   sent: Date;
   viewed: Date;

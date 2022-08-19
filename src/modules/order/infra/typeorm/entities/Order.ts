@@ -1,4 +1,5 @@
 import { IOrderDTO } from '@modules/order/dtos/IOrderDTO';
+import { OrderStatus } from '@modules/orderStatus/infra/typeorm/entities/OrderStatus';
 import { Store } from '@modules/store/infra/typeorm/entities/Store';
 import { User } from '@modules/user/infra/typeorm/entities/User';
 import { DefaultEntity } from '@shared/infra/typeorm/entities/DefaultEntity';
@@ -23,8 +24,9 @@ export class Order extends DefaultEntity implements IOrderDTO {
   @Column()
   storeId: number;
 
-  @Column({ default: 1 })
-  status: number;
+  @ManyToOne(() => OrderStatus, { nullable: false })
+  @JoinColumn({ name: 'status' })
+  status: OrderStatus;
 
   @Column({ type: 'date', default: 'curdate()' })
   date: string;

@@ -1,5 +1,6 @@
 import createOrderSchema from '@modules/order/schemas/createOrder.schema';
 import updateOrderSchema from '@modules/order/schemas/updateOrder.schema';
+import storeAuth from '@shared/infra/http/middlewares/storeAuth';
 import userAuth from '@shared/infra/http/middlewares/userAuth';
 import { celebrate, Segments } from 'celebrate';
 import { Router } from 'express';
@@ -16,6 +17,8 @@ orderRoutes.post(
 );
 
 orderRoutes.get('/', userAuth, orderController.list);
+orderRoutes.get('/store', storeAuth, orderController.listByStore);
+orderRoutes.get('/status/:id', storeAuth, orderController.listByStatus);
 orderRoutes.get('/:id', orderController.listById);
 orderRoutes.put(
   '/:id',

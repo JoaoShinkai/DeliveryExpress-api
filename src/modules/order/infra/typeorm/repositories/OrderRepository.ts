@@ -24,12 +24,29 @@ export class OrderRepository implements IOrderRepository {
       where: {
         id
       },
-      relations: ['user', 'store', 'products', 'products.additionals']
+      relations: ['user', 'store', 'products', 'products.additionals', 'status']
     });
   }
 
   async findByUser(userId: number): Promise<IOrderDTO[]> {
-    return this.repository.find({ userId });
+    return this.repository.find({
+      where: {
+        userId
+      },
+      order: {
+        sent: 'DESC'
+      }
+    });
+  }
+
+  async findByStore(storeId: number): Promise<IOrderDTO[]> {
+    return this.repository.find({ where: { storeId }, relations: ['user'] });
+  }
+
+  async findByStatus(storeId: number, statusId: number): Promise<IOrderDTO[]> {
+    return this.repository.find({
+      where: { storeId, status: statusId }
+    });
   }
 
   async update(id: number, data: Partial<IOrderDTO>): Promise<void> {

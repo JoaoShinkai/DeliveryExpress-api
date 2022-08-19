@@ -3,13 +3,13 @@ import { IOrderDTO } from '../dtos/IOrderDTO';
 import { IOrderRepository } from '../repositories/IOrderRepository';
 
 @injectable()
-export class CreateOrderService {
+export class ListByStoreOrderService {
   constructor(
     @inject('OrderRepository')
     private orderRepository: IOrderRepository
   ) {}
 
-  public async execute(order: IOrderDTO): Promise<void> {
-    await this.orderRepository.create(order);
+  public async execute(storeId: number): Promise<IOrderDTO[]> {
+    return this.orderRepository.findByStore(storeId);
   }
 }

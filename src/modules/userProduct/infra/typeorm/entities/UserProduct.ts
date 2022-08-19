@@ -45,7 +45,7 @@ export class UserProduct extends DefaultEntity implements IUserProductDTO {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: '0.00' })
   discount: number;
 
   @Column({ nullable: true })

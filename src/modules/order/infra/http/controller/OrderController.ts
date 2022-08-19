@@ -1,5 +1,7 @@
 import { CreateOrderService } from '@modules/order/services/CreateOrderService';
 import { ListByIdOrderService } from '@modules/order/services/ListByIdOrderService';
+import { ListByStatusOrderService } from '@modules/order/services/ListByStatusOrderService';
+import { ListByStoreOrderService } from '@modules/order/services/ListByStoreOrderService';
 import { ListByUserOrderService } from '@modules/order/services/ListByUserOrderService';
 import { UpdateOrderService } from '@modules/order/services/UpdateOrderService';
 import { NextFunction, Request, Response } from 'express';
@@ -43,6 +45,37 @@ export class OrderController {
       res.json(await listByUserOrderService.execute(Number(userId)));
     } catch (error) {
       next(error);
+    }
+  }
+
+  async listByStore(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { storeId } = req;
+      const service = container.resolve(ListByStoreOrderService);
+
+      res.json(await service.execute(+storeId));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async listByStatus(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { storeId } = req;
+      const { id } = req.params;
+      const service = container.resolve(ListByStatusOrderService);
+
+      res.json(await service.execute(+storeId, +id));
+    } catch (err) {
+      next(err);
     }
   }
 

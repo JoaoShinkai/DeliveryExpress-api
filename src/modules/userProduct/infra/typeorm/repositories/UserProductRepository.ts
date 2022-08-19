@@ -25,6 +25,7 @@ export class UserProductRepository implements IUserProductRepository {
       },
       relations: [
         'additionals',
+        'additionals.optionAdditional',
         'product',
         'product.category',
         'product.category.store'

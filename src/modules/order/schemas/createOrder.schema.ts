@@ -13,6 +13,7 @@ const createOrderSchema = Joi.object({
   complement: Joi.string(),
   reference: Joi.string(),
   storeId: Joi.number().required(),
+  status: Joi.object({ id: Joi.number().required() }).required(),
   products: Joi.array()
     .items(
       Joi.object({
@@ -21,7 +22,14 @@ const createOrderSchema = Joi.object({
         unityPrice: Joi.number().required(),
         amount: Joi.number().required(),
         discount: Joi.number(),
-        observation: Joi.string()
+        observation: Joi.string(),
+        additionals: Joi.array().items(
+          Joi.object({
+            name: Joi.string().required(),
+            price: Joi.number().required(),
+            optionAdditional: Joi.object({ id: Joi.number() }).required()
+          })
+        )
       })
     )
     .required()

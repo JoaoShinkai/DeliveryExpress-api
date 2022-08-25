@@ -1,3 +1,5 @@
+import { CalcMonthlyProfitService } from '@modules/order/services/CalcMonthlyProfitService';
+import { CountTopSellingProductsService } from '@modules/order/services/CountTopSellingProductsService';
 import { CreateOrderService } from '@modules/order/services/CreateOrderService';
 import { ListByIdOrderService } from '@modules/order/services/ListByIdOrderService';
 import { ListByStatusOrderService } from '@modules/order/services/ListByStatusOrderService';
@@ -87,6 +89,38 @@ export class OrderController {
       const updateOrderService = container.resolve(UpdateOrderService);
 
       res.json(await updateOrderService.execute(Number(id), data));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async countTopSellingProducts(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { storeId } = req;
+
+      const service = container.resolve(CountTopSellingProductsService);
+
+      res.json(await service.execute(+storeId));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async calcMonthlyProfit(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { storeId } = req;
+
+      const service = container.resolve(CalcMonthlyProfitService);
+
+      res.json(await service.execute(+storeId));
     } catch (error) {
       next(error);
     }

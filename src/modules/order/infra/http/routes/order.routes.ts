@@ -19,9 +19,20 @@ orderRoutes.post(
 orderRoutes.get('/', userAuth, orderController.list);
 orderRoutes.get('/store', storeAuth, orderController.listByStore);
 orderRoutes.get('/status/:id', storeAuth, orderController.listByStatus);
+orderRoutes.get(
+  '/count-top-selling-products',
+  storeAuth,
+  orderController.countTopSellingProducts
+);
+orderRoutes.get(
+  '/calc-monthly-profit',
+  storeAuth,
+  orderController.calcMonthlyProfit
+);
 orderRoutes.get('/:id', orderController.listById);
 orderRoutes.put(
   '/:id',
+  storeAuth,
   [celebrate({ [Segments.BODY]: updateOrderSchema })],
   orderController.update
 );

@@ -29,6 +29,11 @@ orderRoutes.get(
   storeAuth,
   orderController.calcMonthlyProfit
 );
+orderRoutes.get(
+  '/count-top-clients',
+  storeAuth,
+  orderController.countTopClients
+);
 orderRoutes.get('/:id', orderController.listById);
 orderRoutes.put(
   '/:id',

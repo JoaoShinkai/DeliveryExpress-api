@@ -9,6 +9,13 @@ interface IMonthlyProfitDTO {
   numberMonth: number;
   amount: number;
   month: string;
+  year: string;
+}
+
+interface ITopClientsDTO {
+  ordersQuantity: number;
+  userId: number;
+  name: string;
 }
 
 export interface IOrderRepository {
@@ -22,4 +29,5 @@ export interface IOrderRepository {
   delete(id: number): Promise<void>;
   countTopSellingProducts(company: number): Promise<ITopSellingProductsDTO[]>;
   calcMonthlyProfit(company: number): Promise<IMonthlyProfitDTO[]>;
+  countTopClients(company: number): Promise<ITopClientsDTO[]>;
 }

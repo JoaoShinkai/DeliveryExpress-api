@@ -12,6 +12,13 @@ interface IMonthlyProfitDTO {
   numberMonth: number;
   amount: number;
   month: string;
+  year: string;
+}
+
+interface ITopClientsDTO {
+  ordersQuantity: number;
+  userId: number;
+  name: string;
 }
 
 export class OrderRepository implements IOrderRepository {
@@ -126,6 +133,7 @@ export class OrderRepository implements IOrderRepository {
       `,
         'month'
       )
+      .addSelect('YEAR(order.date)', 'year')
       .innerJoin(
         'order.store',
         'store',
@@ -138,6 +146,20 @@ export class OrderRepository implements IOrderRepository {
       .groupBy('numberMonth')
       .orderBy('order.date', 'DESC')
       .limit(7)
+      .getRawMany();
+  }
+
+  async countTopClients(company: number): Promise<ITopClientsDTO[]> {
+    return this.repository
+      .createQueryBuilder('order')
+      .select('COUNT(userId)', 'ordersQuantity')
+      .addSelect('user.id', 'userId')
+      .addSelect('user.name', 'name')
+      .innerJoin('order.user', 'user', 'order.userId = user.id')
+      .where('order.storeId = :company and order.status = 4', { company })
+      .groupBy('userId')
+      .orderBy('ordersQuantity', 'DESC')
+      .limit(10)
       .getRawMany();
   }
 }

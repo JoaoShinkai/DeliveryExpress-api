@@ -6,5 +6,5 @@ export interface ICategoryRepository {
   findById(id: number): Promise<ICategoryDTO | undefined>;
   findByStore(storeId: number): Promise<ICategoryDTO[]>;
   update(id: number, data: Partial<ICategoryDTO>): Promise<void>;
-  delete(id: number): Promise<void>;
+  delete(storeId: number, id: number): Promise<void>;
 }

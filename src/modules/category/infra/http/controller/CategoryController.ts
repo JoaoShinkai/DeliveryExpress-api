@@ -1,4 +1,5 @@
 import { CreateCategoryService } from '@modules/category/services/CreateCategoryService';
+import { DeleteCategoryService } from '@modules/category/services/DeleteCategoryService';
 import { ListCategoryByIdService } from '@modules/category/services/ListCategoryByIdService';
 import { ListCategoryByStoreService } from '@modules/category/services/ListCategoryByStoreService';
 import { ListCategoryService } from '@modules/category/services/ListCategoryService';
@@ -72,6 +73,19 @@ export class CategoryController {
       res.json(await updateCategoryService.execute(Number(id), data));
     } catch (error) {
       next(error);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const { storeId } = req;
+
+      const service = container.resolve(DeleteCategoryService);
+
+      res.json(await service.execute(storeId, +id));
+    } catch (err) {
+      next(err);
     }
   }
 }

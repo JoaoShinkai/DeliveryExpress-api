@@ -1,4 +1,5 @@
 import { CalcMonthlyProfitService } from '@modules/order/services/CalcMonthlyProfitService';
+import { CountTopClientsService } from '@modules/order/services/CountTopClientsService';
 import { CountTopSellingProductsService } from '@modules/order/services/CountTopSellingProductsService';
 import { CreateOrderService } from '@modules/order/services/CreateOrderService';
 import { ListByIdOrderService } from '@modules/order/services/ListByIdOrderService';
@@ -123,6 +124,22 @@ export class OrderController {
       res.json(await service.execute(+storeId));
     } catch (error) {
       next(error);
+    }
+  }
+
+  async countTopClients(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { storeId } = req;
+
+      const service = container.resolve(CountTopClientsService);
+
+      res.json(await service.execute(+storeId));
+    } catch (err) {
+      next(err);
     }
   }
 }

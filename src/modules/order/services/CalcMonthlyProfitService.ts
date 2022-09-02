@@ -5,6 +5,7 @@ interface IMonthlyProfitDTO {
   numberMonth: number;
   amount: number;
   month: string;
+  year: string;
 }
 
 @injectable()
